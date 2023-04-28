@@ -1,39 +1,36 @@
 package org.CopsAndThieves;
 
-import java.util.Random;
-
-import static org.CopsAndThieves.ThreadColor.ANSI_CYAN;
 import static org.CopsAndThieves.ThreadColor.ANSI_GREEN;
 
 public class Thief extends Thread {
 
-    private String name;
-    private int start;
-    private int end;
+    private final int start;
+    private final int end;
 
-    private int vaultCombinationNumber;
+    private final int vaultCombinationNumber;
 
-    public Thief(String name, int start, int end) {
+    public Thief(String name, int start, int end, int vaultCombinationNumber) {
         super(name);
         this.start = start;
         this.end = end;
+        this.vaultCombinationNumber = vaultCombinationNumber;
     }
 
     @Override
     public void run() {
-        this.vaultCombination();
+
 
         for (int i = start; i <= end; i++) {
 
             int combination = Integer.parseInt(String.valueOf(i));
-//
+
             try {
                 Thief.sleep(1);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             if (combination == vaultCombinationNumber) {
-                System.out.println(ANSI_GREEN + "Combination is " + combination + " ,thieves ran away with the loot.");
+                System.out.println(ANSI_GREEN + getName() + " broke in! The combination is " + combination + " ,thieves ran away with the loot.");
                 System.exit(1);
             }
 
@@ -41,11 +38,6 @@ public class Thief extends Thread {
 
     }
 
-    public void vaultCombination() {
-
-        Random random = new Random();
-        vaultCombinationNumber = random.nextInt(10000) + 1;
-        System.out.println(ANSI_CYAN + "Vault combination " + vaultCombinationNumber);
-    }
-
 }
+
+

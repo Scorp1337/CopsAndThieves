@@ -1,32 +1,29 @@
 package org.CopsAndThieves;
 
+import java.util.Random;
+
+import static org.CopsAndThieves.ThreadColor.ANSI_CYAN;
+
 /**
- * Am reusit sa fac clasa Cop sa faca tot ce trebuie. Face countdownul de la 10 la 0.
- * Am facut si clasa VaultCombination care creeaza un numar random intre 1 si 10000, desi cred ca aceasta combinatie ar
- * fi buna poate in thieves deoarece ei incearca sa o descifreze.
- * <p>
- * Clasa Thief are nume, un start si un end deoarece ne trebuie  4 thieves cu 4 rangeuri diferite, dar nu stiu cum sa
- * fac sa iau acel numar dat de thief1,2,3 sau 4 sa il introduc intr-un if (nrThief == vaultCombination) si sa printeze
- * ca au gasit combinatia sau sa iasa din program.
- * <p>
- * Clasa ThreadColor e doar ceva fun care am vazut intr-un alt cod si am zis ca ar fi fun printurile sa fie in culori
- * diferite.
+ * Create an APP that has 4 thieves and 1 Cop, where the thieves are trying to break into a vault and the cops are
+ * trying to catch them. Vault combination is set to be random from 1 to 10000.
  */
 public class App {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args)  {
+        int vaultCombinationNumber;
+        Random random = new Random();
+        vaultCombinationNumber = random.nextInt(10000) + 1;
+        System.out.println(ANSI_CYAN + "Vault combination " + vaultCombinationNumber);
 
-
-        Thief thief1 = new Thief("Thief 1", 1, 2500);
-        Thief thief2 = new Thief("Thief 2", 2501, 5000);
-        Thief thief3 = new Thief("Thief 3", 5001, 7500);
-        Thief thief4 = new Thief("Thief 4", 7501, 10000);
-
+        Thief thief1 = new Thief("Thief 1", 1, 2500, vaultCombinationNumber);
+        Thief thief2 = new Thief("Thief 2", 2501, 5000, vaultCombinationNumber);
+        Thief thief3 = new Thief("Thief 3", 5001, 7500, vaultCombinationNumber);
+        Thief thief4 = new Thief("Thief 4", 7501, 10000, vaultCombinationNumber);
 
         thief1.start();
         thief2.start();
         thief3.start();
         thief4.start();
-
 
         Cop cop = new Cop("Cop", 10);
         cop.start();
@@ -34,3 +31,4 @@ public class App {
 
     }
 }
+
