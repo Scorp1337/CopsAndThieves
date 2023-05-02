@@ -6,20 +6,15 @@ import static org.CopsAndThieves.ThreadColor.ANSI_RED;
 public class Cop extends Thread {
 
     private String name;
-    private int time = 10;
 
-    public Cop(String name, int time) {
+
+    public Cop(String name) {
         super(name);
-        this.time = time;
     }
 
     @Override
     public void run() {
         this.countdown();
-
-        for (int i = time; i >= 0; i--) {
-
-        }
         try {
             Cop.sleep(1);
         } catch (InterruptedException e) {

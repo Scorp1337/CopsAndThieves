@@ -6,7 +6,6 @@ public class Thief extends Thread {
 
     private final int start;
     private final int end;
-
     private final int vaultCombinationNumber;
 
     public Thief(String name, int start, int end, int vaultCombinationNumber) {
@@ -19,11 +18,8 @@ public class Thief extends Thread {
     @Override
     public void run() {
 
-
         for (int i = start; i <= end; i++) {
-
-            int combination = Integer.parseInt(String.valueOf(i));
-
+            int combination = i;
             try {
                 Thief.sleep(1);
             } catch (InterruptedException e) {
@@ -33,11 +29,8 @@ public class Thief extends Thread {
                 System.out.println(ANSI_GREEN + getName() + " broke in! The combination is " + combination + " ,thieves ran away with the loot.");
                 System.exit(1);
             }
-
         }
-
     }
-
 }
 
 
